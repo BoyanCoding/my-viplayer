@@ -86,7 +86,7 @@ If you want to build the app yourself:
 
 2. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/my-viplayer.git
+   git clone https://github.com/BoyanCoding/my-viplayer.git
    cd my-viplayer
    ```
 
