@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Video Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="video-wrapper">
+            <video id="video" preload="metadata">
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="placeholder" id="placeholder">
+                <div class="placeholder-content">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <h2>No video loaded</h2>
+                    <p>Click "Open Video" to select a file</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+
+            <div class="buttons-row">
+                <div class="left-controls">
+                    <button id="openBtn" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/>
+                        </svg>
+                        Open Video
+                    </button>
+                    <button id="stopBtn" class="btn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="4" y="4" width="16" height="16"/>
+                        </svg>
+                        Stop
+                    </button>
+                </div>
+
+                <div class="playback-controls">
+                    <button id="back30Btn" class="btn btn-secondary" title="Back 30 seconds">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12h9m-9-4l9 4-9 4m12-8v12"/>
+                        </svg>
+                        30s
+                    </button>
+                    <button id="back10Btn" class="btn btn-secondary" title="Back 10 seconds">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12h8m-8-4l8 4-8 4m11-8v12"/>
+                        </svg>
+                        10s
+                    </button>
+                    <button id="playPauseBtn" class="btn btn-large" disabled>
+                        <svg id="playIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                        <svg id="pauseIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                            <rect x="6" y="4" width="4" height="16"/>
+                            <rect x="14" y="4" width="4" height="16"/>
+                        </svg>
+                    </button>
+                    <button id="forward10Btn" class="btn btn-secondary" title="Forward 10 seconds">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 8l8 4-8 4M3 8v12"/>
+                        </svg>
+                        10s
+                    </button>
+                    <button id="forward30Btn" class="btn btn-secondary" title="Forward 30 seconds">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 8l9 4-9 4M3 8v12"/>
+                        </svg>
+                        30s
+                    </button>
+                </div>
+
+                <div class="right-controls">
+                    <div class="speed-control">
+                        <label for="speedSlider">Speed:</label>
+                        <div class="speed-wrapper">
+                            <button id="speedDown" class="btn-speed">−</button>
+                            <span id="speedDisplay">1.0x</span>
+                            <button id="speedUp" class="btn-speed">+</button>
+                        </div>
+                        <input type="range" id="speedSlider" min="0.5" max="3" step="0.1" value="1">
+                        <div class="speed-presets">
+                            <button class="speed-preset" data-speed="0.5">0.5x</button>
+                            <button class="speed-preset" data-speed="1">1x</button>
+                            <button class="speed-preset" data-speed="1.5">1.5x</button>
+                            <button class="speed-preset" data-speed="2">2x</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shortcuts-info">
+            <h3>Keyboard Shortcuts</h3>
+            <div class="shortcuts-grid">
+                <span><kbd>Space</kbd></span><span>Play/Pause</span>
+                <span><kbd>←</kbd></span><span>Back 10s</span>
+                <span><kbd>→</kbd></span><span>Forward 10s</span>
+                <span><kbd>↓</kbd></span><span>Back 30s</span>
+                <span><kbd>↑</kbd></span><span>Forward 30s</span>
+                <span><kbd>S</kbd></span><span>Decrease speed</span>
+                <span><kbd>D</kbd></span><span>Increase speed</span>
+                <span><kbd>R</kbd></span><span>Reset speed</span>
+                <span><kbd>O</kbd></span><span>Open video</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
