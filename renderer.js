@@ -165,6 +165,33 @@ function updatePlayPauseIcon(isPlaying) {
     }
 }
 
+// Click feedback overlay
+const clickFeedback = document.createElement('div');
+clickFeedback.id = 'clickFeedback';
+clickFeedback.innerHTML = `
+    <svg id="feedbackPlayIcon" width="64" height="64" viewBox="0 0 24 24" fill="white">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+    </svg>
+    <svg id="feedbackPauseIcon" width="64" height="64" viewBox="0 0 24 24" fill="white" style="display:none">
+        <rect x="6" y="4" width="4" height="16"/>
+        <rect x="14" y="4" width="4" height="16"/>
+    </svg>
+`;
+document.querySelector('.video-wrapper').appendChild(clickFeedback);
+
+let feedbackTimer = null;
+function showClickFeedback(isPaused) {
+    const playIc = document.getElementById('feedbackPlayIcon');
+    const pauseIc = document.getElementById('feedbackPauseIcon');
+    playIc.style.display = isPaused ? 'block' : 'none';
+    pauseIc.style.display = isPaused ? 'none' : 'block';
+    clickFeedback.classList.add('visible');
+    clearTimeout(feedbackTimer);
+    feedbackTimer = setTimeout(() => {
+        clickFeedback.classList.remove('visible');
+    }, 500);
+}
+
 // Event Listeners
 
 // Open file
@@ -314,6 +341,18 @@ video.addEventListener('play', () => {
 
 video.addEventListener('pause', () => {
     updatePlayPauseIcon(false);
+});
+
+// Click on video to toggle play/pause with visual feedback
+video.addEventListener('click', () => {
+    if (!video.src || video.src === window.location.href || playPauseBtn.disabled) return;
+    if (video.paused) {
+        video.play();
+        showClickFeedback(false);
+    } else {
+        video.pause();
+        showClickFeedback(true);
+    }
 });
 
 // Keyboard shortcuts
